@@ -8,6 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+/**
+ * A basic HTTP client.
+ * @author RailRunner16
+ */
 public class HttpClient {
 	private static final String USER_AGENT = "RailHttp/1.0";
 
