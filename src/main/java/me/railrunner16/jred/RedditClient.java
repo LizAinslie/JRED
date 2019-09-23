@@ -15,7 +15,7 @@ public class RedditClient {
 		this.credentials = credentials;
 	}
 
-	public void revokeMyToken() {
-		OAuthHelper.revokeToken(this.credentials, this.authToken, TokenType.ACCESS);
+	public boolean revokeMyToken() {
+		return OAuthHelper.revokeToken(this.credentials, this.authToken, TokenType.ACCESS);
 	}
 }
