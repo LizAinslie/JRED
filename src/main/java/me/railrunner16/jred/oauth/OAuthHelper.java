@@ -6,18 +6,25 @@ import me.railrunner16.jred.http.BasicAuth;
 import me.railrunner16.jred.http.FormBody;
 import me.railrunner16.jred.http.HttpClient;
 
-import java.util.Base64;
 import java.util.HashMap;
-import java.util.UUID;
 
+/**
+ * An OAuth helper class.
+ * @author RailRunner16
+ */
 public class OAuthHelper {
 	private static class RedditGrantResponse {
 		public String scope;
-		public String access_token;
+		String access_token;
 		public String token_type = "bearer";
 		public long expires_in;
 	}
 
+	/**
+	 * Create a new Reddit API client from the given credentials.
+	 * @param credentials The credentials to use in order to create the API client.
+	 * @return The new API client.
+	 */
 	public static RedditClient automatic(Credentials credentials) {
 		try {
 			FormBody formBody = new FormBody();
@@ -39,6 +46,13 @@ public class OAuthHelper {
 		}
 	}
 
+	/**
+	 * Revoke a token.
+	 * @param c The credentials of the app that the token belongs to.
+	 * @param token The token to revoke.
+	 * @param type The type of token to revoke.
+	 * @return Whether or not the action was successful.
+	 */
 	public static boolean revokeToken(Credentials c, String token, TokenType type) {
 		try {
 			FormBody formBody = new FormBody();
@@ -54,5 +68,15 @@ public class OAuthHelper {
 		} catch(Exception e) {
 			return false;
 		}
+	}
+
+	/**
+	 * Revoke a token of an unknown type. This method will take longer, as Reddi has to guess at the type of token to revoke.
+	 * @param c The credentials of the app that the token belongs to.
+	 * @param token The token to revoke.
+	 * @return Whether or not the action was successful.
+	 */
+	public static boolean revokeToken(Credentials c, String token) {
+		return revokeToken(c, token, null);
 	}
 }
