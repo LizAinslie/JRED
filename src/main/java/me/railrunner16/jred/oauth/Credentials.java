@@ -24,4 +24,8 @@ public class Credentials {
 	public static Credentials script(String clientId, String clientSecret, String username, String password) {
 		return new Credentials(AuthMethod.SCRIPT, clientId, clientSecret, null, username, password, null);
 	}
+
+	public static Credentials userlessApp(String clientId, UUID deviceId) {
+		return new Credentials(AuthMethod.USERLESS_APP, clientId, "", deviceId, null, null, null);
+	}
 }
